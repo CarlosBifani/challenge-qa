@@ -1,0 +1,2 @@
+//Personagem criado com habilidade de velocidade menor que 0 apresentando falha no sistema:
+{"id":"a241a29a-cd03-424a-872e-992010d0e2be","name":"Bob Esponja","skills":{"power":2,"velocity":-1,"combat":1}}
