@@ -1,0 +1,789 @@
+{
+	"info": {
+		"_postman_id": "298c2818-05da-4b5f-a564-8b161adca50a",
+		"name": "Teste - API_Heroes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-app-id",
+						"value": "MPD4XHcIIGfMA0GCSqGSIbi232QKBgQCh7uxHjWd1CyRgPKiDb3DQEBAQUAA4GNADCB",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/auth",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC01_Get Heroes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Check that it returns an array\", function () {",
+							"  var jsonData = pm.response.json();",
+							"  pm.expect(jsonData).to.be.an(\"array\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5NTUyLCJleHAiOjE2NDI4MzMxNTJ9.30Lhs-yOG8fbnkfuvG_7yK7SaFZs5br9aAbWQbopUng",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC02_Create Heroes power \"0\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body('{\"message\":\"Skills -> Power is empty\"}');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Homem Teste - 1\",\n   \"skills\": {\n            \"power\": 0,\n            \"velocity\": 15,\n            \"combat\": 99\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC03_Create Heroes velocity \"0\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body('{\"message\":\"Skills -> Velocity is empty\"}');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Homem Teste - 2\",\n   \"skills\": {\n            \"power\": 100,\n            \"velocity\": 0,\n            \"combat\": 99\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC04_Create Heroes combat \"0\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body('{\"message\":\"Skills -> Combat is empty\"}');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Homem Teste - 3\",\n   \"skills\": {\n            \"power\": 100,\n            \"velocity\": 50,\n            \"combat\": 0\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC05_Create Heroes skills \"0\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Homem Teste - 4\",\n   \"skills\": {\n            \"power\": 0,\n            \"velocity\": 0,\n            \"combat\": 0\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC06_Create Heroes invalid name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body('{\"message\":\"Name is empty\"}');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"\",\n   \"skills\": {\n            \"power\": 100,\n            \"velocity\": 100,\n            \"combat\": 100\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC07_Create Heroes same name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body('{\"message\":\"This hero already exists\"}');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Thor\",\n   \"skills\": {\n            \"power\": 150,\n            \"velocity\": 180,\n            \"combat\": 170\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC08_Create Heroes skills < 0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Bob Esponja\",\n   \"skills\": {\n            \"power\": -1,\n            \"velocity\": -2,\n            \"combat\": -3\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC09_Create Heroes skills > 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Thanus\",\n   \"skills\": {\n            \"power\": 201,\n            \"velocity\": 210,\n            \"combat\": 250\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC10_Create Heroes skills limits",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Capitao Caverna\",\n   \"skills\": {\n            \"power\": 125,\n            \"velocity\": 110,\n            \"combat\": 166\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC11_Batte Heroes - I",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"have the same power\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"hero_id\": \"5ea23405-2340-4a0e-be08-33a5650ac7d5\",\n    \"machine_hero_id\": \"b81c4ac1-112b-46fa-a703-ed94406d02a2\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes/battle",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes",
+						"battle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC12_Batte Heroes - II",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include('loser\":\"Capitao Caverna\"}');",
+							"}); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"hero_id\": \"5ea23405-2340-4a0e-be08-33a5650ac7d5\",\n    \"machine_hero_id\": \"93f96fb2-dcca-4b47-bcdf-9bf5058898d6\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes/battle",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes",
+						"battle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC13_Batte Heroes - III",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include('{\"winner\":\"Capitao Caverna\"');",
+							"}); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"hero_id\": \"5ea23405-2340-4a0e-be08-33a5650ac7d5\",\n    \"machine_hero_id\": \"g67a8cec-f3b3-4be0-920d-3c559e762ba2\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes/battle",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes",
+						"battle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC14_Batte Heroes - Invalid Battle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body('{\"message\":\"Hero not found\"}');",
+							"}); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"hero_id\": \"5ea23405-2340-4a0e-be08-\",\n    \"machine_hero_id\": \"g67a8cec-f3b3-4be0-920d-3c559e762ba2\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes/battle",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes",
+						"battle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC15_Batte Heroes - Invalid Battle same hero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body('{\"message\":\"Change the hero\"}');",
+							"}); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVnZW5kYXJ5IEd1aWRlIiwiZGVzY3JpcHRpb24iOiJEZXNhZmlvIGRlIFFBIEF1dG9tYXRpemF0aW9uIiwiY29tcGFueSI6IkZpZWxvIiwiaWF0IjoxNjQyODI5MTg1LCJleHAiOjE2NDI4MzI3ODV9.nHtmFjIX0KxzbhN7UPIG6-XfbVS00_B5T934vyhjAQ4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"hero_id\": \"5ea23405-2340-4a0e-be08-33a5650ac7d5\",\n    \"machine_hero_id\": \"5ea23405-2340-4a0e-be08-33a5650ac7d5\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://challenge-fielo-qa.herokuapp.com/heroes/battle",
+					"protocol": "https",
+					"host": [
+						"challenge-fielo-qa",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"heroes",
+						"battle"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
